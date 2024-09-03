@@ -1,0 +1,20 @@
+Web development project
+
+Sharbel, Akbar and Mohammad
+
+What project?
+Online Event Scheduling: a tool for scheduling meetings, appointments, and events
+
+Features:
+1-Skapa konto logga in (data base)
+2-Ta bort konto
+3-Boka möten / avboka möten
+4-Checklista 
+5-Skicka notiser
+
+Entities:
+1- Användare 
+2- Event 
+
+
+
