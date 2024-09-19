@@ -1,6 +1,7 @@
 // Import required libraries
 const express = require('express');
 const mongoose = require('mongoose');
+const Appointment = require('./models/Appointment');
 require('dotenv').config();  // Load environment variables from .env
 
 const app = express();
@@ -20,6 +21,16 @@ mongoose.connect(process.env.MONGODB_URI, {
 // Simple route to check if the API is working
 app.get('/', (req, res) => {
   res.send('API is working');
+});
+
+// GET route to fetch all appointments
+app.get('/appointments', async(req, res) => {
+  try{
+    const appointments = await Appointment.find(); // fitch all appointments from MongoDB 
+    res.json(appointments); // sends the appointments back as JSON
+  } catch (error){
+    res.status(500).json({message: error.message}); // Handels errors
+  }
 });
 
 // Start the server
