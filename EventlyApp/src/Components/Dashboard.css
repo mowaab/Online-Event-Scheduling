@@ -1,0 +1,22 @@
+.CreateAccount {
+    text-align: center;
+}
+
+.CreateAccount h4 {
+    text-align: center;
+    color: aqua;
+}
+
+.CreateAccount button {
+    text-align: center;
+    padding: 10px 20px;
+    border: none;
+    background-color: #28a745;
+    color: white;
+    cursor: pointer;
+    border-radius: 20px;
+}
+
+.CreateAccount button:hover {
+    background-color: #2ab84b;
+  }
