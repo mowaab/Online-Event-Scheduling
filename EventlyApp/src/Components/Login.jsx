@@ -1,4 +1,4 @@
-// src/Components/Login.js
+// src/Components/Login.jsx
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import './Login.css';
@@ -77,7 +77,7 @@ const Login = () => {
 
       <br />
       <Link
-        style={{color: 'cyan'}}
+        style={{color: 'darkcyan'}}
         to="#"
         onClick={() => setIsCreatingAccount(!isCreatingAccount)}
       >
