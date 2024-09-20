@@ -7,17 +7,20 @@ import Calender from './Components/Calender';
 
 
 function App() {
+
   return (
+    
     <Router>
       <div className="App">
         <Routes>
+
           <Route path="/" element={<Login />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/calender" element={<Calender />} />
 
         </Routes>
       </div>
-    </Router>
+    </Router>    
   );
 }
 

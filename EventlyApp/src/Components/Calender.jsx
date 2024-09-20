@@ -8,6 +8,13 @@ const Calendar = () => {
   const [currYear, setCurrYear] = useState(currDate.getFullYear());
   const navigate = useNavigate();
 
+  //
+
+  const [showMenu, setShowMenu] = useState(false); // State to manage menu visibility
+  const toggleMenu = () => {
+    setShowMenu(!showMenu);
+  };
+
   const handleLogout = () => {
     navigate('/'); // Redirect back to login page on logout
   };
@@ -53,6 +60,8 @@ const Calendar = () => {
     if (daysTag) {
       daysTag.innerHTML = liTag;
     }
+
+    
   };
 
   const handlePrevNext = (direction) => {
@@ -88,6 +97,9 @@ const Calendar = () => {
           <span id="next" className="material-symbols-rounded" onClick={() => handlePrevNext("next")}>
             R
           </span>
+          <span id="menu" className="material-symbols-rounded" onClick={toggleMenu}>
+            =
+          </span>
         </div>
       </header>
 
@@ -104,7 +116,18 @@ const Calendar = () => {
 
         <ul className="days"></ul>
       </div>
-    <button onClick={handleLogout}>Logout</button>
+    <button onClick={handleLogout} className="btn">Logout</button>
+    {showMenu && (
+        <div className="menu">
+          <ul>
+            <li>Create event</li>
+            <li>Delete event</li>
+            <li>Update event</li>
+            <li onClick={() => handleMenuItemClick("item1")}>Menu Item 1</li>
+            <li><a className="btn" onClick={handleLogout} >Logout</a></li>
+          </ul>
+        </div>
+      )}
     </div>
   );
 };

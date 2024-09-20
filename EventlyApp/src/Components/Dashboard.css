@@ -19,4 +19,20 @@
 
 .CreateAccount button:hover {
     background-color: #2ab84b;
+}
+
+.CreateAccount button {
+    padding: 15px 30px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 18px;
+    transition: background-color 0.3s ease-in-out;
   }
+  
+  .CreateAccount button:hover {
+    background-color: #0056b6;
+  }
+  
