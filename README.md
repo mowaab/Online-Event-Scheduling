@@ -1,5 +1,7 @@
 **Evently**
 
+Project Group 8
+
 Your go-to tool for scheduling tasks, appointments and _events_!
 
 
