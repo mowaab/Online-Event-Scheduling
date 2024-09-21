@@ -28,7 +28,7 @@ Backend:
 
 Database: MongoDB
 
-**compilation and running instructions**
+**Compilation and running instructions**
 
 1- Install NodeJS v20.17.0
 
