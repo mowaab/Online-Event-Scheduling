@@ -20,12 +20,28 @@ Evently is a crossplatform online event planner, that is designed to help users 
 
 5- Send notifications 
 
+**Tech stack**
+
+Frontend: JavaScript, HTML, CSS, ReactJS, Material-UI
+
+Backend:
+
+Database: MongoDB
+
+**compilation and running instructions**
+
+1- Install NodeJS v20.17.0
+
+2- Open the terminal and run npm install
+
+3- run npm run dev and visit the URL printed in the terminal
+
 **License**
 
 **Contact**
 
 Sharbel
 
-Mohammad
+Mohammad Abbas abmo22ue@student.ju.se
 
 Akbar
