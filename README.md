@@ -1,16 +1,16 @@
-**Evently**
+# Evently
 
-Project Group 8
+**Project Group 8**
 
 Your go-to tool for scheduling tasks, appointments and _events_!
 
 
-**Introduction**
+## Introduction
 
 Evently is a crossplatform online event planner, that is designed to help users easily schedule, manage, and sync their meetings, appointments, and events. With a user-friendly interface, Evently streamlines the scheduling process, allowing you to focus on what matters most.
 
 
-**Features**
+## Features
 
 1- Create accounts 
 
@@ -22,7 +22,7 @@ Evently is a crossplatform online event planner, that is designed to help users 
 
 5- Send notifications 
 
-**Tech stack**
+## Tech stack
 
 Frontend: JavaScript, HTML, CSS, ReactJS, Material-UI
 
@@ -30,7 +30,7 @@ Backend:
 
 Database: MongoDB
 
-**Compilation and running instructions**
+## Compilation and running instructions
 
 1- Install NodeJS v20.17.0
 
@@ -38,9 +38,9 @@ Database: MongoDB
 
 3- run npm run dev and visit the URL printed in the terminal
 
-**License**
+## License
 
-**Contact**
+## Contact
 
 Sharbel
 
