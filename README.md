@@ -43,9 +43,10 @@ Database: MongoDB
 ## License
 
 ## Contact
+# Collaborators
+| Name | Email |
+| - | - |
+| Sharbel| |
+| Akbarjon Nodirjonovich Radjabov | raak21zu@student.ju.se or akbarradjabov1@gmail.com |
+| Mohammad Abbas | abmo22ue@student.ju.se |
 
-Sharbel
-
-Mohammad Abbas abmo22ue@student.ju.se
-
-Akbar
