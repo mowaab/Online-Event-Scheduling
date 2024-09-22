@@ -1,9 +1,9 @@
 // src/App.jsx
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Login from './Components/Login';
-import Dashboard from './Components/Dashboard';
-import Calender from './Components/Calender';
+import Login from './View/Login';
+import Dashboard from './View/Dashboard';
+import Calender from './View/Calender';
 
 
 function App() {

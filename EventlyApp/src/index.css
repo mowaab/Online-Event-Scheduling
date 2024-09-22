@@ -28,6 +28,7 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  background: #cb0170; /* Background Color for APP*/
 }
 
 h1 {

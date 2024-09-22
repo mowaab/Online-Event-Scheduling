@@ -1,0 +1,46 @@
+/* Import Google font - Poppins */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+body{
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  justify-content: center;
+  min-height: 100vh;
+  background: #ca237f; /* Background Color for APP*/
+}
+
+.container {
+  width: 400px;
+  background: #fff;
+  border-radius: 15px;
+  box-shadow: 0 15px 40px rgba(0,0,0,0);
+}
+.header {
+    text-align: center;
+}
+
+.container header{
+  display: flex;
+  align-items: center;
+  padding: 25px 30px 10px;
+  justify-content: space-between;
+}
+
+.btn{
+  padding: 15px 30px;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 18px;
+  transition: background-color 0.3s ease-in-out;
+}
+
+
