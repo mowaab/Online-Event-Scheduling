@@ -38,6 +38,8 @@ Database: MongoDB
 
 3- run npm run dev and visit the URL printed in the terminal
 
+4- Login with username: "admin" and Password: "123"
+
 ## License
 
 ## Contact
