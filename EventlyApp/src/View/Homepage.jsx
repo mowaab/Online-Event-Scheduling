@@ -1,6 +1,6 @@
 // src/View/Homepage.jsx
 import React from 'react';
-import { BrowserRouter as Router, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './Homepage.css'; 
 
 const Navbar = () => (
@@ -9,26 +9,25 @@ const Navbar = () => (
       <ul className="nav-links">
 
         <li><Link to="/">Home</Link></li>
-        <li><Link to="/about">About</Link></li>
-        
-        <li><Link to="/services">Services</Link></li>
-        <li><Link to="/contact">Contact</Link></li>
+        <li><Link to="/playground">Playground</Link></li>
+
         <li><Link to="/login"><strong><u>Login</u></strong></Link></li>
       </ul>
     </nav>
   );
   
-  const HeroSection = () => (
-    <section className="hero">
-      <div className="hero-content">        
-        
-      </div>
-    </section>
-  );
-  
+
   const Features = () => (
     <section className="features">
-      <h2>Our Features</h2>
+
+        <h1>Welcome to <strong>Evently</strong></h1> <br />
+      <p>
+        At Evently, we help you organize and manage your events seamlessly. 
+        Stay up to date with your schedules and never miss an important event!
+      </p> <br />
+
+      
+      <h2>Our Features</h2> <br />
       <div className="feature-grid">
         <div className="feature-item">
           <h3>Fast Performance</h3>
@@ -48,19 +47,28 @@ const Navbar = () => (
   
   const Testimonials = () => (
     <section className="testimonials">
-      <h2>What Our Clients Say</h2>
+      <h2>What Our Clients Say</h2> <br />
       <div className="testimonial-grid">
         <div className="testimonial-item">
           <p>"Evently transformed our way of everyday life!"</p>
-          <span>— Mike Ox, CEO of Shmuck Incorporated</span>
+          <span>— Mike Ox, CEO of Schmuck Incorporated</span>
         </div>
         <div className="testimonial-item">
           <p>"Amazing service with top-notch customer support."</p>
-          <span>— Jane Smith, Founder of Creativa</span>
+          <span>— Mohammad Abbas, The Real Founder of SpaceX</span>
         </div>
       </div>
+
+      <br /><br />
+      <h2>Contact Information</h2>
+      <br />
+      <p><strong>Email:</strong> emotional-support@evently.com</p>
+      <p><strong>Phone:</strong> 073 420 69 69</p>
+      <p><strong>Address:</strong> 123 Evently St, Event City, EV 12345</p>
+      <br />
     </section>
   );
+
   
   const Footer = () => (
     <footer>
@@ -79,7 +87,6 @@ const Homepage = () => {
   return (
     <div className="homepage">
         <Navbar />
-        <HeroSection />
         <Features />
         <Testimonials />
         <Footer />

@@ -15,7 +15,7 @@ const Login = () => {
 
     // Simple authentication logic for demo purposes
     if (username === 'a' && password === '123') {
-      navigate('/home'); // Redirect to dashboard after successful login
+      navigate('/calendar'); // Redirect to dashboard after successful login
     } else {
       setError('Invalid username or password');
     }
@@ -24,7 +24,7 @@ const Login = () => {
   const handleCreateAccountSubmit = (e) => {
     e.preventDefault();
     // Account creation logic can go here
-    navigate('/dashboard'); // Redirect to dashboard after account creation (for demo purposes)
+    navigate('/'); // Redirect to home after account creation
   };
 
   
