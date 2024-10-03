@@ -2,24 +2,11 @@
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-<<<<<<< Updated upstream
-  /*
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87); */
-  background-color: #000000;
-=======
-
-  /*color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);*/
-  background-color: #e91313;
->>>>>>> Stashed changes
-
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
 
 
 body {
@@ -51,20 +38,3 @@ button {
     background-color: #0056b6;
   }
 
-<<<<<<< Updated upstream
-
-  
-=======
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #005daf;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
-}
->>>>>>> Stashed changes
