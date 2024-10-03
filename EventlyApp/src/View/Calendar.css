@@ -14,7 +14,7 @@ body {
   padding: 0 10px;
   justify-content: center;
   min-height: 100vh;
-  background: #000000 !important; /* Background Color for APP */
+  background: #4a5478 !important; /* Background Color for APP */
 }
 
 .container {
@@ -126,4 +126,3 @@ body {
 .events-list strong {
   color: #000; /* Make labels bold and black for visibility */
 }
-
