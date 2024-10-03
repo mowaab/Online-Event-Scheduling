@@ -14,7 +14,7 @@ const Login = () => {
     e.preventDefault();
 
     // Simple authentication logic for demo purposes
-    if (username === 'admin' && password === '123') {
+    if (username === 'a' && password === '123') {
       navigate('/calender'); // Redirect to dashboard after successful login
     } else {
       setError('Invalid username or password');
@@ -24,9 +24,10 @@ const Login = () => {
   const handleCreateAccountSubmit = (e) => {
     e.preventDefault();
     // Account creation logic can go here
-    navigate('/dashboard'); // Redirect to dashboard after account creation (for demo purposes)
+    navigate('/'); // Redirect to home after account creation
   };
 
+  
   return (
     <div className="login-container">
       <h2>{isCreatingAccount ? 'Create an Account' : 'Login Page'}</h2>
@@ -72,6 +73,7 @@ const Login = () => {
           </div>
           {error && <p style={{ color: 'red' }}>{error}</p>}
           <button type="submit">Login</button>
+
         </form>
       )}
 
@@ -83,6 +85,7 @@ const Login = () => {
       >
         {isCreatingAccount ? 'Already have an account? Login' : 'Create an account'}
       </Link>
+
     </div>
   );
 };
