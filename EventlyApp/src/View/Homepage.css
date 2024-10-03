@@ -3,8 +3,8 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  
 }
+
 h1 {
   color: #333;
 }
@@ -43,21 +43,6 @@ p {
 }
 
 
-
-.hero {
-  background-color: #d0cbcb;
-  text-align: center;
-  padding: 1rem;
-  background-image: url('logo.png');
-
-  background-size: cover;  /* Makes the background cover the entire section */
-  background-position: center;  /* Centers the background image */
-  background-repeat: no-repeat;  /* Prevents the background from repeating */
-  height: 80vh;  /* Makes the hero section fill the viewport */
-  display: flex;
-  align-items: center;  /* Centers content vertically */
-  justify-content: center;  /* Centers content horizontally */
-}
 
 @media (max-width: 768px) {
   .hero {
