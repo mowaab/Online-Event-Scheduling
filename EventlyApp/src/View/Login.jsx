@@ -15,7 +15,7 @@ const Login = () => {
 
     // Simple authentication logic for demo purposes
     if (username === 'a' && password === '123') {
-      navigate('/calendar'); // Redirect to dashboard after successful login
+      navigate('/calender'); // Redirect to dashboard after successful login
     } else {
       setError('Invalid username or password');
     }

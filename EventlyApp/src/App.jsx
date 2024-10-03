@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 import Login from './View/Login';
-import Calendar from './View/Calendar';
+import Calender from './View/Calender';
 import Homepage from './View/Homepage';
 
 import Playground from './View/Playground';
@@ -23,7 +23,7 @@ function App() {
 
           <Route path="/" element={<Homepage />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/calendar" element={<Calendar />} />
+          <Route path="/calender" element={<Calender />} />
 
           <Route path="/playground" element={<Playground />} />
 
