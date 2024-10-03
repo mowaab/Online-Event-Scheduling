@@ -2,9 +2,11 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Login from './View/Login';
-import Dashboard from './View/Dashboard';
+import Homepage from './View/Homepage';
 import Calender from './View/Calender';
 
+import Playground from './View/Playground';
+import Dashboard from './View/Dashboard';
 
 function App() {
 
@@ -14,9 +16,12 @@ function App() {
       <div className="App">
         <Routes>
 
-          <Route path="/" element={<Login />} />
-          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/" element={<Homepage />} />
+          <Route path="/login" element={<Login />} />
           <Route path="/calender" element={<Calender />} />
+          
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/playground" element={<Playground />} />
 
         </Routes>
       </div>
