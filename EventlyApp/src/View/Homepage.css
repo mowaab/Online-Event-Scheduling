@@ -1,0 +1,122 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  background-color: #000000;
+  padding: 1rem;
+}
+
+.navbar .logo {
+  color: rgb(158, 158, 158);
+  font-size: 2rem;
+  margin-left: 2rem;
+
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+}
+
+.nav-links li {
+  margin-left: 3rem;
+}
+
+.nav-links a {
+  color: rgb(158, 158, 158);
+  text-decoration: none;
+}
+
+
+
+.hero {
+  background-color: #d0cbcb;
+  text-align: center;
+  padding: 1rem;
+  background-image: url('logo.png');
+
+  background-size: cover;  /* Makes the background cover the entire section */
+  background-position: center;  /* Centers the background image */
+  background-repeat: no-repeat;  /* Prevents the background from repeating */
+  height: 80vh;  /* Makes the hero section fill the viewport */
+  display: flex;
+  align-items: center;  /* Centers content vertically */
+  justify-content: center;  /* Centers content horizontally */
+}
+
+@media (max-width: 768px) {
+  .hero {
+    background-size: contain;  /* On smaller screens, adjust image size */
+    height: 50vh;  /* Reduce section height */
+  }
+}
+
+
+.features {
+  padding: 2rem;
+  background-color: #000000;
+}
+
+.feature-grid {
+  display: flex;
+  justify-content: space-around;
+}
+
+.feature-item {
+  flex: 1;
+  margin: 1rem;
+  padding: 2rem;
+  background-color:rgb(158, 158, 158);
+
+
+  border-radius: 10px;
+  box-shadow: 5px 5px 30px -5px rgba(255,255,255,1);
+}
+
+.testimonials {
+  background-color: #000000;
+  padding: 2rem;
+}
+
+.testimonial-grid {
+  display: flex;
+  justify-content: space-around;
+}
+
+.testimonial-item {
+  
+  background-color: rgb(158, 158, 158);
+  padding: 2rem;
+  border-radius: 10px;
+  max-width: 30%;
+  box-shadow: 5px 5px 30px -5px rgba(255,255,255,1);
+}
+
+.footer {
+  background-color: #000000;
+  color: rgb(255, 255, 255);
+  padding: 2rem;
+  text-align: center;
+}
+
+.social-links {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+}
+
+.social-links li {
+  margin: 0 1rem;
+}
+
+.social-links a {
+  color: white;
+  text-decoration: none;
+}

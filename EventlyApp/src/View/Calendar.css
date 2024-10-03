@@ -32,7 +32,8 @@ body{
   justify-content: space-between;
 }
 
-.btn{
+
+.go-to-calendar-btn {
   padding: 15px 30px;
   border: none;
   background-color: #007bff;
@@ -46,5 +47,6 @@ body{
   display: block;
 }
 
-
-
+.go-to-calendar-btn:hover {
+  background-color: #0056b6;
+}
