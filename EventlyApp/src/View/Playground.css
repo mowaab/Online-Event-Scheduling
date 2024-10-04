@@ -1,0 +1,57 @@
+.container1 {
+    width: 400px;
+    background-color: #efefef;
+    
+    border-radius: 15px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0);
+    margin: auto;
+  }
+  .header1 {
+      text-align: center;
+  }
+  
+
+
+
+
+  .container1 header{
+    display: flex;
+    align-items: center;
+    padding: 25px 30px 10px;
+    justify-content: space-between;
+  }
+
+
+
+
+* {
+    font-family: Arial, Verdana, sans-serif;
+    color: #665544;
+    text-align: center;
+}
+body {
+    width: 100%; /*Better way to size window*/
+    margin: 0 auto;} /*Way to center*/
+#content {
+    overflow: auto;} /*Delar upp mellan features*/
+#nav, #feature, #footer {
+    margin: 1%;}
+.column1, .column2, .column3 { /* Sidleds */
+    width: 31.3%;
+    float: left;
+    margin: 1%;} 
+.column3 {
+    margin-right: 0%;}
+li {
+    display: inline; 	/* List looks better */
+    padding: 0.5em;}
+#nav, #footer {
+    background-color: #efefef;
+    padding: 0.5em 0;
+    border-radius: 15px;}
+#feature, .article {
+    height: 10em;
+    margin-bottom: 1em;
+    background-color: #efefef;
+    border-radius: 15px;
+} /*  */
