@@ -77,7 +77,7 @@ const Login = () => {
 
       <br />
       <Link
-        style={{color: 'darkcyan'}}
+        style={{color: 'darkgrey'}}
         to="#"
         onClick={() => setIsCreatingAccount(!isCreatingAccount)}
       >

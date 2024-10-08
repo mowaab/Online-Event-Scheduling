@@ -1,7 +1,7 @@
 /* src/Components/Login.css */
 
 .login-container {
-  width: 300px;
+  width: 350px;
   height: auto; /* Adjust height dynamically */
   margin: 50px auto; /* Reduced margin for a more centered position */
   padding: 30px;
@@ -13,21 +13,22 @@
 
 .login-container h2 {
   margin-bottom: 25px;
-  color: #333; /* Darker header text */
+  color: #696666; /* Darker header text */
 }
 
 .login-container input {
   width: 100%;
   padding: 15px;
   margin-bottom: 15px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
+  border: 5px solid #696666;
+  border-radius: 15px;
   font-size: 16px;
   transition: border-color 0.3s ease-in-out;
+  background-color: #a099999c;
 }
 
 .login-container input:focus {
-  border-color: #007bff;
+  border-color: #050a0f;
 }
 
 .login-container button {
