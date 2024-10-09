@@ -92,3 +92,37 @@ body {
 .event-form .btn:hover {
   background-color: #0056b6;
 }
+
+/* Events list styling */
+.events-list {
+  margin-top: 20px;
+  background-color: #f7f7f7; /* Light background for contrast */
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Adding a soft shadow */
+  color: #333; /* Dark text color for better readability */
+}
+
+.events-list h3 {
+  color: #3e7297; /* Match the theme color for the header */
+  margin-bottom: 10px;
+}
+
+.events-list ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.events-list li {
+  margin-bottom: 10px;
+  padding: 10px;
+  border-bottom: 1px solid #ddd; /* Add a subtle separator between events */
+}
+
+.events-list li:last-child {
+  border-bottom: none; /* Remove border from the last item */
+}
+
+.events-list strong {
+  color: #000; /* Make labels bold and black for visibility */
+}

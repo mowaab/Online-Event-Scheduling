@@ -14,7 +14,7 @@ const Login = () => {
     e.preventDefault();
 
     // Simple authentication logic for demo purposes
-    if (username === 'admin' && password === '123') {
+    if (username === 'a' && password === '123') {
       navigate('/calender'); // Redirect to dashboard after successful login
     } else {
       setError('Invalid username or password');
