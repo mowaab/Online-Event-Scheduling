@@ -4,6 +4,8 @@ import dotenv from 'dotenv';
 import connectDB from './db.js';
 import UserRoutes from './routes/UserRoutes.js';
 import AppoiRoutes from './routes/AppoiRoutes.js';
+import cors from 'cors'; // Import the cors package
+
 
 
 
@@ -12,6 +14,7 @@ const app = express();
 
 
 // Middleware
+app.use(cors()); // Enable CORS for all routes
 app.use(express.json());
 app.use('/api/users',UserRoutes);
 app.use('/api/appointments',AppoiRoutes);
