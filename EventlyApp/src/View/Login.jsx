@@ -1,30 +1,74 @@
 // src/Components/Login.jsx
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import './Login.css';
 
 const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [email, setEmail] = useState(''); 
   const [error, setError] = useState('');
   const [isCreatingAccount, setIsCreatingAccount] = useState(false); // Toggle between login and signup
   const navigate = useNavigate();
 
-  const handleLoginSubmit = (e) => {
-    e.preventDefault();
+  const handleLoginSubmit = async (e) => {
+    e.preventDefault(); 
+    const loginData = {username, password};
 
-    // Simple authentication logic for demo purposes
-    if (username === 'a' && password === '123') {
-      navigate('/calender'); // Redirect to dashboard after successful login
-    } else {
-      setError('Invalid username or password');
+    try {
+      const response = await fetch('http://localhost:5001/api/users/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(loginData), // Send the login data in JSON format
+      });
+  
+      if (response.ok) {
+        const data = await response.json(); // Parse the response data
+        console.log('Login successful: ', data); // You can store the token or handle successful login here
+        navigate('/calender'); // Redirect to the calendar page after successful login
+      } else {
+        const errorData = await response.json(); // Parse error response
+        setError(errorData.message); // Set error message if login fails
+      }
+    } catch (error) {
+      console.error('Error logging in:', error);
+      setError('Error logging in');
     }
   };
 
-  const handleCreateAccountSubmit = (e) => {
+  const handleCreateAccountSubmit = async (e) => {
     e.preventDefault();
-    // Account creation logic can go here
-    navigate('/'); // Redirect to home after account creation
+
+    const userData = 
+    {
+      username: e.target.username.value, //Get username from the form
+      email: e.target.email.value, // Get email from form
+      password: e.target.password.value // // // 
+    };
+    try {
+      // Make API call to register the new user
+      const response = await fetch('http://localhost:5001/api/users/register', {
+        method: 'POST', // Specify POST method for creating a resourse
+        headers:{'Content-Type':'application/json',}, // setting content type for JSON data
+        body: JSON.stringify(userData), // Convert user data to JSON 
+      }); 
+      if(response.ok)
+        {
+          const data = await response.json(); //Parse response data 
+          console.log('User created Successfully: ', data); // seccess message 
+          navigate('/'); // Redirect to home after account creation
+
+        }else {
+          const errorData = await response.json(); // Parse error response data
+          setError(errorData.message); // Set error message from server response
+        }
+    } catch (error) {
+      console.error('Error creating account:', error); // Log error for debugging
+      setError('Error creating account');
+    }
+     
   };
 
   
@@ -36,8 +80,15 @@ const Login = () => {
         // Create account form
         <form onSubmit={handleCreateAccountSubmit}>
           <div>
-            <label htmlFor="name">Fullname:</label>
-            <input type="text" id="name" name="name" required />
+            <label htmlFor="username">Username:</label> {/* Username input */}
+            <input
+              type="text"
+              id="username" // Set the id for the input field
+              name="username" // Set the name for the input field
+              required
+              value={username} // Bind username state
+              onChange={(e) => setUsername(e.target.value)} // Update username state
+            />
           </div>
           <div>
             <label htmlFor="email">Email:</label>
