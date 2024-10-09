@@ -1,6 +1,7 @@
 // src/Components/Login.jsx
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
+import Cookies from 'js-cookie'; // Import js-cookie for cookie handling
 import './Login.css';
 
 const Login = () => {
@@ -25,8 +26,10 @@ const Login = () => {
       });
   
       if (response.ok) {
-        const data = await response.json(); // Parse the response data
-        console.log('Login successful: ', data); // You can store the token or handle successful login here
+        const data = await response.json();// Parse the response data
+        console.log('Login successful: ', data);
+        localStorage.setItem('userId', data.userId); // Save user ID in local storage
+
         navigate('/calender'); // Redirect to the calendar page after successful login
       } else {
         const errorData = await response.json(); // Parse error response

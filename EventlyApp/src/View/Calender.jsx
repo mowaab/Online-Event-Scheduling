@@ -1,19 +1,43 @@
 import * as React from 'react';
-import { useState } from 'react'; // import useState to use React state 
-import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import { useState, useEffect } from 'react'; 
+import { useNavigate } from 'react-router-dom'; 
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DateCalendar } from '@mui/x-date-pickers/DateCalendar';
 import './Calender.css';
+import Cookies from 'js-cookie'; 
 
 export default function BasicDateCalendar() {
   const navigate = useNavigate();
-  const [selectedDate, setSelectedDate] = useState(null); // this stores the currently selected date 
-  const [events, setEvents] = useState([]); // this stores all the events
-  const [eventDetails, setEventDetails] = useState({ title: '', description: '', time: '' }); // this stores details of the event being created
+  const [selectedDate, setSelectedDate] = useState(null); 
+  const [events, setEvents] = useState([]); 
+  const [eventDetails, setEventDetails] = useState({ title: '', description: '', time: '' }); 
 
-  // Function to handle adding an event
-  const handleAddEvent = () => {
+  const userId = localStorage.getItem('userId'); // Get userId inside the component
+
+  useEffect(() => {
+    const fetchUserAppointments = async () => {
+      try {
+          const response = await fetch(`http://localhost:5001/api/appointments/${userId}`);
+          if (response.ok) {
+              const appointments = await response.json();
+              setEvents(appointments); 
+          } else {
+              const errorData = await response.json();
+              console.error('Error fetching appointments:', errorData.message);
+          }
+      } catch (error) {
+          console.error('Error fetching appointments:', error);
+      }
+    };
+
+    // Only fetch if userId exists
+    if (userId) {
+      fetchUserAppointments();
+    }
+  }, [userId]); // Depend on userId
+
+  const handleAddEvent = async() => {
     if (!selectedDate) {
       alert("Please select a date for the event.");
       return;
@@ -25,20 +49,41 @@ export default function BasicDateCalendar() {
     }
 
     // Create a new event
-    const newEvent = {
-      date: selectedDate.format('YYYY-MM-DD'), // Formatting the date for readability
-      ...eventDetails,
+    const appointmentData = {
+      user: userId,
+      title: eventDetails.title,
+      date: selectedDate.format('YYYY-MM-DD'), // Ensure selectedDate is in correct format
+      time: eventDetails.time,
+      description: eventDetails.description,
     };
 
-    // Add the new event to the events array
-    setEvents([...events, newEvent]);
+    try {
+      const response = await fetch('http://localhost:5001/api/appointments', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${localStorage.getItem('token')}`,
+        },
+        body: JSON.stringify(appointmentData),
+      });
 
-    // Clear the form after adding the event
-    setEventDetails({ title: '', description: '', time: '' });
+      if (response.ok) {
+        const savedAppointment = await response.json();
+        setEvents([...events, savedAppointment]);
+        setEventDetails({ title: '', description: '', time: '' });
+      } else {
+        const errorData = await response.json();
+        alert(errorData.message || 'Failed to save appointment');
+      }
+    } catch (error) {
+      console.error('Error adding event:', error);
+      alert('Error adding event');
+    }
   };
 
   const handleLogout = () => {
-    navigate('/'); // Redirect to the root (login) page
+    Cookies.remove('userId'); // Remove the userId cookie
+    navigate('/'); // Redirect to the login page
   };
 
   return (
@@ -47,39 +92,33 @@ export default function BasicDateCalendar() {
       <LocalizationProvider dateAdapter={AdapterDayjs}>
         <DateCalendar 
           value={selectedDate}
-          onChange={(newDate) => setSelectedDate(newDate)} // Capturing the selected date
+          onChange={(newDate) => setSelectedDate(newDate)} 
         />
         <div className="event-form">
-          {/* Input for event title */}
           <input
             type="text"
             placeholder="Event Title"
             value={eventDetails.title}
             onChange={(e) => setEventDetails({ ...eventDetails, title: e.target.value })}
           />
-          {/* Input for event description */}
           <input
             type="text"
             placeholder="Event Description"
             value={eventDetails.description}
             onChange={(e) => setEventDetails({ ...eventDetails, description: e.target.value })}
           />
-          {/* Input for event time */}
           <input
             type="time"
             placeholder="Time"
             value={eventDetails.time}
             onChange={(e) => setEventDetails({ ...eventDetails, time: e.target.value })}
           />
-          {/* Button to add the event */}
           <button onClick={handleAddEvent} className="btn">Add Event</button>
         </div>
       </LocalizationProvider>
 
-      {/* Logout Button */}
       <button onClick={handleLogout} className="btn">Logout</button>
 
-      {/* Display List of Events */}
       <div className="events-list">
         <h3>Scheduled Events:</h3>
         {events.length > 0 ? (
