@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DateCalendar } from '@mui/x-date-pickers/DateCalendar';
@@ -12,10 +14,92 @@ const goToProfile = () => {
     navigate('/profile'); 
   };
   */
+
+  const Navbar = () => (
+    <nav className="navbar">
+      <div className="logo">Evently</div> 
+      <ul className="nav-links">
+
+        <li><Link to="/">Home</Link></li>
+        <li><Link to="/calender">Calendar</Link></li>
+        <li><Link to="/playground">Playground</Link></li>
+        <li><Link to="/login"><strong><u>Login</u></strong></Link></li>
+      </ul>
+    </nav>
+  );
+  
+
+  const Features = () => (
+    <section className="features">
+
+      <h1>Welcome to <strong>Evently</strong></h1> <br />
+      <p>
+        At Evently, we help you organize and manage your events seamlessly. 
+        Stay up to date with your schedules and never miss an important event!
+      </p> <br />
+
+      <div className="container1">
+        <br/>
+        <h2 className="header1">Select a Date</h2>
+        <LocalizationProvider dateAdapter={AdapterDayjs}>
+        <DateCalendar />
+        </LocalizationProvider>
+        </div>
+     
+    </section>
+  );
+  
+  const Testimonials = () => (
+    <section className="testimonials">
+      <h2>What Our Clients Say</h2> <br />
+      <div className="testimonial-grid">
+        <div className="testimonial-item">
+          <p>"Evently transformed our way of everyday life!"</p>
+          <span>— Mike Ox, CEO of Schmuck Incorporated</span>
+        </div>
+        <div className="testimonial-item">
+          <p>"Amazing service with top-notch customer support."</p>
+          <span>— Mohammad Abbas, The Real Founder of SpaceX</span>
+        </div>
+      </div>
+
+      <br /><br />
+      <h2>Contact Information</h2>
+      <br />
+      <p><strong>Email:</strong> emotional-support@evently.com</p>
+      <p><strong>Phone:</strong> 073 420 69 69</p>
+      <p><strong>Address:</strong> 123 Evently St, Event City, EV 12345</p>
+      <br />
+    </section>
+  );
+
+  
+  const Footer = () => (
+    <footer>
+      <div className="footer-content">
+        <p>&copy; {new Date().getFullYear()} Evently. All Rights Reserved.</p>
+        <ul className="social-links">
+          <li><a href="https://facebook.com">Facebook</a></li>
+          <li><a href="https://twitter.com">Twitter</a></li>
+          <li><a href="https://instagram.com">Instagram</a></li>
+        </ul>
+      </div>
+    </footer>
+  );
+  
+
 const SetupPage = () => {
   return (
     <div>        
-        <div id="header">
+      <div className="homepage">
+        <Navbar />
+        <Features />
+        <Testimonials />
+        <Footer />
+      </div>
+      
+      
+      <div id="header">
 
 			<h1>Evently</h1>
 			<div id="nav">
@@ -81,7 +165,7 @@ const SetupPage = () => {
         <h2 className="header1">Select a Date</h2>
         <LocalizationProvider dateAdapter={AdapterDayjs}>
         <DateCalendar />
-      </LocalizationProvider>
+        </LocalizationProvider>
         </div>
       
 

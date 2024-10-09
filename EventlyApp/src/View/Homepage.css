@@ -22,7 +22,11 @@ p {
 }
 
 .navbar .logo {
+<<<<<<< Updated upstream
   color: rgb(158, 158, 158);
+=======
+  color: rgb(158, 158, 158); 
+>>>>>>> Stashed changes
   font-size: 2rem;
   margin-left: 2rem;
 

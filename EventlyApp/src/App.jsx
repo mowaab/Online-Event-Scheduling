@@ -6,7 +6,6 @@ import Homepage from './View/Homepage';
 import Calender from './View/Calender';
 
 import Playground from './View/Playground';
-import Dashboard from './View/Dashboard';
 
 function App() {
 
@@ -20,7 +19,6 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/calender" element={<Calender />} />
           
-          <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/playground" element={<Playground />} />
 
         </Routes>
