@@ -1,4 +1,6 @@
+import mongoose from "mongoose";
 import Appointment from "../models/Appointment.js";
+
 
 export const makeAppointment = async (req,res) => {
     const{user, title, date, time, description, status} = req.body
@@ -17,6 +19,17 @@ export const makeAppointment = async (req,res) => {
     }
     
 }
+
+export const getUserAppointments = async (req, res) => {
+    const { userId } = req.params; // Assuming user ID is passed as a URL parameter
+    
+    try {
+        const appointments = await Appointment.find({ user: userId });
+        res.status(200).json(appointments);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+};
 
 export const deleteAppointment = async (req, res) => {
     const {id} = req.params

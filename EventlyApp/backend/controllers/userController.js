@@ -1,7 +1,8 @@
 import mongoose from "mongoose";
 import User from "../models/User.js";
 import bcrypt from "bcrypt"; // Import bcrypt for password hashing
-import jwt from 'jsonwebtoken';
+
+
 
 
 
@@ -87,11 +88,8 @@ export const loginUser = async (req, res) => {
             return res.status(400).json({ message: 'Invalid username or password' });
         }
 
-        // Create a JWT token (optional, can be used for authentication in future requests)
-        const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
-
         // Respond with success and the token (you can also send user data if needed)
-        res.status(200).json({ message: 'Login successful', token });
+        res.status(200).json({ message: 'Login successful', userId: user._id });
 
     } catch (error) {
         console.error('Error logging in:', error);
