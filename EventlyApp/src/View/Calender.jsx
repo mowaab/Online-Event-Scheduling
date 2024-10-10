@@ -5,7 +5,6 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DateCalendar } from '@mui/x-date-pickers/DateCalendar';
 import './Calender.css';
-import Cookies from 'js-cookie'; 
 
 export default function BasicDateCalendar() {
   const navigate = useNavigate();
@@ -82,7 +81,7 @@ export default function BasicDateCalendar() {
   };
 
   const handleLogout = () => {
-    Cookies.remove('userId'); // Remove the userId cookie
+    localStorage.removeItem('userId');
     navigate('/'); // Redirect to the login page
   };
 
@@ -128,7 +127,7 @@ export default function BasicDateCalendar() {
                 <strong>Date:</strong> {event.date} <br />
                 <strong>Title:</strong> {event.title} <br />
                 <strong>Description:</strong> {event.description || 'No description'} <br />
-                <strong>Time:</strong> {event.time}
+                <strong>Time:</strong> {event.time} <br />
               </li>
             ))}
           </ul>
