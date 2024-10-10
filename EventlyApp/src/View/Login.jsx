@@ -1,7 +1,6 @@
 // src/Components/Login.jsx
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import Cookies from 'js-cookie'; // Import js-cookie for cookie handling
 import './Login.css';
 
 const Login = () => {
