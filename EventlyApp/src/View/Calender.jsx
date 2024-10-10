@@ -1,42 +1,51 @@
-import * as React from 'react';
-import { useState, useEffect } from 'react'; 
-import { useNavigate } from 'react-router-dom'; 
+import React, { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DateCalendar } from '@mui/x-date-pickers/DateCalendar';
 import './Calender.css';
+import Cookies from 'js-cookie';
 
-export default function BasicDateCalendar() {
-  const navigate = useNavigate();
+const Navbar = () => (
+  <nav className="navbar">
+    <div className="logo">Evently</div>
+    <ul className="nav-links">
+      <li><Link to="/">Home</Link></li>
+      <li><Link to="/calender">Calendar</Link></li>
+      <li><Link to="/login"><strong><u>Login</u></strong></Link></li>
+    </ul>
+  </nav>
+);
+
+const Features = () => {
   const [selectedDate, setSelectedDate] = useState(null); 
-  const [events, setEvents] = useState([]); 
-  const [eventDetails, setEventDetails] = useState({ title: '', description: '', time: '' }); 
-
+  const [events, setEvents] = useState([]);
+  const [eventDetails, setEventDetails] = useState({ title: '', description: '', time: '' });
+  const navigate = useNavigate();
   const userId = localStorage.getItem('userId'); // Get userId inside the component
 
   useEffect(() => {
     const fetchUserAppointments = async () => {
       try {
-          const response = await fetch(`http://localhost:5001/api/appointments/${userId}`);
-          if (response.ok) {
-              const appointments = await response.json();
-              setEvents(appointments); 
-          } else {
-              const errorData = await response.json();
-              console.error('Error fetching appointments:', errorData.message);
-          }
+        const response = await fetch(`http://localhost:5001/api/appointments/${userId}`);
+        if (response.ok) {
+          const appointments = await response.json();
+          setEvents(appointments); 
+        } else {
+          const errorData = await response.json();
+          console.error('Error fetching appointments:', errorData.message);
+        }
       } catch (error) {
-          console.error('Error fetching appointments:', error);
+        console.error('Error fetching appointments:', error);
       }
     };
 
-    // Only fetch if userId exists
     if (userId) {
       fetchUserAppointments();
     }
-  }, [userId]); // Depend on userId
+  }, [userId]);
 
-  const handleAddEvent = async() => {
+  const handleAddEvent = async () => {
     if (!selectedDate) {
       alert("Please select a date for the event.");
       return;
@@ -47,11 +56,10 @@ export default function BasicDateCalendar() {
       return;
     }
 
-    // Create a new event
     const appointmentData = {
       user: userId,
       title: eventDetails.title,
-      date: selectedDate.format('YYYY-MM-DD'), // Ensure selectedDate is in correct format
+      date: selectedDate.format('YYYY-MM-DD'),
       time: eventDetails.time,
       description: eventDetails.description,
     };
@@ -81,60 +89,116 @@ export default function BasicDateCalendar() {
   };
 
   const handleLogout = () => {
-    localStorage.removeItem('userId');
-    navigate('/'); // Redirect to the login page
+    Cookies.remove('userId');
+    navigate('/login');
   };
 
   return (
-    <div className="container">
-      <h2 className="header">Select a Date</h2>
-      <LocalizationProvider dateAdapter={AdapterDayjs}>
-        <DateCalendar 
-          value={selectedDate}
-          onChange={(newDate) => setSelectedDate(newDate)} 
-        />
-        <div className="event-form">
-          <input
-            type="text"
-            placeholder="Event Title"
-            value={eventDetails.title}
-            onChange={(e) => setEventDetails({ ...eventDetails, title: e.target.value })}
+    <section className="features">
+      <h1>Welcome to <strong>Evently</strong></h1>
+      <br /> <br />
+      <div className="container1">
+
+        <br />
+        <h2 className="header1">Select a Date</h2>
+        <LocalizationProvider dateAdapter={AdapterDayjs}>
+          <DateCalendar 
+            value={selectedDate}
+            onChange={(newDate) => setSelectedDate(newDate)} 
           />
-          <input
-            type="text"
-            placeholder="Event Description"
-            value={eventDetails.description}
-            onChange={(e) => setEventDetails({ ...eventDetails, description: e.target.value })}
-          />
-          <input
-            type="time"
-            placeholder="Time"
-            value={eventDetails.time}
-            onChange={(e) => setEventDetails({ ...eventDetails, time: e.target.value })}
-          />
-          <button onClick={handleAddEvent} className="btn">Add Event</button>
+          <div className="event-form">
+            <input
+              type="text"
+              placeholder="Event Title"
+              value={eventDetails.title}
+              onChange={(e) => setEventDetails({ ...eventDetails, title: e.target.value })}
+            />
+            <input
+              type="text"
+              placeholder="Event Description"
+              value={eventDetails.description}
+              onChange={(e) => setEventDetails({ ...eventDetails, description: e.target.value })}
+            />
+            <input
+              type="time"
+              value={eventDetails.time}
+              onChange={(e) => setEventDetails({ ...eventDetails, time: e.target.value })}
+            />
+            <button onClick={handleAddEvent} className="btn">Add Event</button>
+          </div>
+        </LocalizationProvider>
+
+        <button onClick={handleLogout} className="btn">Logout</button>
+
+        <div className="events-list">
+          <h3>Scheduled Events:</h3>
+          {events.length > 0 ? (
+            <ul>
+              {events.map((event, index) => (
+          <li key={index}>
+            <strong>Date:</strong> {event.date.split('T')[0]} <br />
+            <strong>Title:</strong> {event.title} <br />
+            <strong>Description:</strong> {event.description || 'No description'} <br />
+            <strong>Time:</strong> {event.time} <br /> <br />
+          </li>
+        ))}
+            </ul>
+          ) : (
+            <p>No events scheduled yet.</p>
+          )}
         </div>
-      </LocalizationProvider>
+      </div>
+    </section>
+  );
+};
 
-      <button onClick={handleLogout} className="btn">Logout</button>
-
-      <div className="events-list">
-        <h3>Scheduled Events:</h3>
-        {events.length > 0 ? (
-          <ul>
-            {events.map((event, index) => (
-              <li key={index}>
-                <strong>Date:</strong> {event.date} <br />
-                <strong>Title:</strong> {event.title} <br />
-                <strong>Description:</strong> {event.description || 'No description'} <br />
-                <strong>Time:</strong> {event.time} <br />
-              </li>
-            ))}
-          </ul>
-        ) : (
-          <p>No events scheduled yet.</p>
-        )}
+const Testimonials = () => (
+  <section className="testimonials">
+    <h2>Our Features</h2>
+    <div className="feature-grid">
+      <div className="feature-item">
+        <h3>Fast Performance</h3>
+        <p>Our solutions are optimized for speed and efficiency.</p>
+      </div>
+      <div className="feature-item">
+        <h3>Responsive Design</h3>
+        <p>Looks great on all screen sizes from mobile to desktop.</p>
+      </div>
+      <div className="feature-item">
+        <h3>Customizable</h3>
+        <p>Fully customizable designs to fit your brand and needs.</p>
       </div>
     </div>
+
+    <h2>Contact Information</h2>
+    <p><strong>Email:</strong> emotional-support@evently.com</p>
+    <p><strong>Phone:</strong> 073 420 69 69</p>
+    <p><strong>Address:</strong> 123 Evently St, Event City, EV 12345</p>
+  </section>
+);
+
+const Footer = () => (
+  <footer>
+    <div className="footer-content">
+      <p>&copy; {new Date().getFullYear()} Evently. All Rights Reserved.</p>
+      <ul className="social-links">
+        <li><a href="https://facebook.com">Facebook</a></li>
+        <li><a href="https://twitter.com">Twitter</a></li>
+        <li><a href="https://instagram.com">Instagram</a></li>
+      </ul>
+    </div>
+  </footer>
+);
+
+const SetupPage = () => {
+  return (
+    <div>
+      <Navbar />
+      <Features />
+      <Testimonials />
+      <Footer />
+    </div>
   );
-}
+};
+
+export default SetupPage;

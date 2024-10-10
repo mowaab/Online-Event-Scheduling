@@ -78,16 +78,7 @@ body {
   font-size: 16px;
 }
 
-.event-form .btn {
-  width: 100%;
-  padding: 12px;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease-in-out;
-}
+
 
 .event-form .btn:hover {
   background-color: #0056b6;
@@ -116,7 +107,6 @@ body {
 .events-list li {
   margin-bottom: 10px;
   padding: 10px;
-  border-bottom: 1px solid #ddd; /* Add a subtle separator between events */
 }
 
 .events-list li:last-child {
