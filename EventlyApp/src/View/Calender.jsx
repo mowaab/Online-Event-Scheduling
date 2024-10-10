@@ -122,14 +122,14 @@ export default function BasicDateCalendar() {
         <h3>Scheduled Events:</h3>
         {events.length > 0 ? (
           <ul>
-            {events.map((event, index) => (
-              <li key={index}>
-                <strong>Date:</strong> {event.date} <br />
-                <strong>Title:</strong> {event.title} <br />
-                <strong>Description:</strong> {event.description || 'No description'} <br />
-                <strong>Time:</strong> {event.time} <br />
-              </li>
-            ))}
+          {events.map((event, index) => (
+                    <li key={index}>
+                      <strong>Date:</strong> {event.date.split('T')[0]} <br />
+                      <strong>Title:</strong> {event.title} <br />
+                      <strong>Description:</strong> {event.description || 'No description'} <br />
+                      <strong>Time:</strong> {event.time} <br /> <br />
+                    </li>
+          ))}
           </ul>
         ) : (
           <p>No events scheduled yet.</p>

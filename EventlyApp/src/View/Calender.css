@@ -119,9 +119,6 @@ body {
   border-bottom: 1px solid #ddd; /* Add a subtle separator between events */
 }
 
-.events-list li:last-child {
-  border-bottom: none; /* Remove border from the last item */
-}
 
 .events-list strong {
   color: #000; /* Make labels bold and black for visibility */
