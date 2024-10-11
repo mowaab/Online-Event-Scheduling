@@ -11,6 +11,7 @@ const Navbar = ({ handleLogout }) => (
     <div className="logo">Evently</div>
     <ul className="nav-links">
       <li><Link to="/calender">Calendar</Link></li>
+      <li><Link to="/dashboard">Dashboard</Link></li>
       <li><button onClick={handleLogout} className="btnLogOut">Logout</button></li>
     </ul>
   </nav>
@@ -87,13 +88,7 @@ const Features = () => {
     }
   };
 
-  const handleLogout = () => {
-    localStorage.removeItem('userId');
-    localStorage.removeItem('token');
-    Cookies.remove('userId');
-    navigate('/');
-  };
-
+  
   return (
     <section className="features">
       <h1>Welcome to <strong>Evently</strong></h1>
