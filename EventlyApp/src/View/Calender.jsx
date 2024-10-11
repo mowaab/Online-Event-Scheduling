@@ -6,13 +6,12 @@ import { DateCalendar } from '@mui/x-date-pickers/DateCalendar';
 import './Calender.css';
 import Cookies from 'js-cookie';
 
-const Navbar = () => (
+const Navbar = ({ handleLogout }) => (
   <nav className="navbar">
     <div className="logo">Evently</div>
     <ul className="nav-links">
-      <li><Link to="/">Home</Link></li>
       <li><Link to="/calender">Calendar</Link></li>
-      <li><Link to="/login"><strong><u>Login</u></strong></Link></li>
+      <li><button onClick={handleLogout} className="btnLogOut">Logout</button></li>
     </ul>
   </nav>
 );
@@ -89,8 +88,10 @@ const Features = () => {
   };
 
   const handleLogout = () => {
+    localStorage.removeItem('userId');
+    localStorage.removeItem('token');
     Cookies.remove('userId');
-    navigate('/login');
+    navigate('/');
   };
 
   return (
@@ -128,7 +129,6 @@ const Features = () => {
           </div>
         </LocalizationProvider>
 
-        <button onClick={handleLogout} className="btn">Logout</button>
 
         <div className="events-list">
           <h3>Scheduled Events:</h3>
@@ -191,9 +191,18 @@ const Footer = () => (
 );
 
 const SetupPage = () => {
+
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.removeItem('userId');
+    localStorage.removeItem('token');
+    Cookies.remove('userId');
+    navigate('/');
+  };
   return (
     <div>
-      <Navbar />
+      <Navbar handleLogout={handleLogout} />
       <Features />
       <Testimonials />
       <Footer />

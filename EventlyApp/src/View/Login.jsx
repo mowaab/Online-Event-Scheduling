@@ -3,6 +3,8 @@ import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import './Login.css';
 
+
+
 const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -40,6 +42,8 @@ const Login = () => {
     }
   };
 
+
+
   const handleCreateAccountSubmit = async (e) => {
     e.preventDefault();
 
@@ -66,6 +70,7 @@ const Login = () => {
           const errorData = await response.json(); // Parse error response data
           setError(errorData.message); // Set error message from server response
         }
+
     } catch (error) {
       console.error('Error creating account:', error); // Log error for debugging
       setError('Error creating account');
@@ -142,5 +147,6 @@ const Login = () => {
     </div>
   );
 };
+
 
 export default Login;

@@ -17,6 +17,20 @@ body {
   background: black !important; /* Background Color for APP */
 }
 
+.btnLogOut {
+  background: none;
+  border: none;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+  padding: 0;
+  text-decoration: underline;
+}
+.btnLogOut:hover {
+  color: #ffffff;
+  background: none;
+}
+
 .container {
   width: 450px;
   background: #fff;

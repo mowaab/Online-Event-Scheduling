@@ -5,10 +5,9 @@ import Login from './View/Login';
 import Calender from './View/Calender';
 import Homepage from './View/Homepage';
 
+import ProtectedRoute from './View/ProtectedRoute';
 import Playground from './View/Playground';
-
 //import Profile from './View/Profile';
-//<Route path="/profile" element={<Profile />} />
 
 
 
@@ -23,7 +22,10 @@ function App() {
 
           <Route path="/" element={<Homepage />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/calender" element={<Calender />} />
+          <Route path="/calender" element=
+          {<ProtectedRoute>
+            <Calender />
+          </ProtectedRoute>} />
 
           <Route path="/playground" element={<Playground />} />
 
