@@ -32,7 +32,7 @@ We are using the MERN stack along with Material-UI for UI components.
 
 2- Open the terminal and navigate to the backend directory
 
-3- Install required dependencies: By first running npm install --save-dev nodemon and then npm install -g nodemon
+3- Install required dependencies by first running "npm install --save-dev nodemon" and then "npm install -g nodemon"
 
 4- run npm run dev to start the backend
 
