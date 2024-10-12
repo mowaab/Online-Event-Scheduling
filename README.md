@@ -14,13 +14,13 @@ Evently is a crossplatform online event planner, that is designed to help users 
 
 1- Create accounts 
 
-2- Delete accounts
+2- Login
 
-3- Book meeting or add tasks
+3- Add events
 
-4- Checklist 
+4- Delete events
 
-5- Send notifications 
+5- Checklist 
 
 ## Tech stack
 
@@ -36,7 +36,7 @@ We are using the MERN stack along with Material-UI for UI components.
 
 4- run npm run dev to start the backend
 
-5- Open a second terminal and navigate to EventlyApp
+5- Open a second terminal and navigate to EventlyApp 
 
 6- run npm install
 
@@ -50,7 +50,7 @@ We are using the MERN stack along with Material-UI for UI components.
 # Collaborators
 | Name | Email |
 | - | - |
-| Sharbel| |
+| Sharbel| alsh22nt@student.ju.se |
 | Akbarjon Nodirjonovich Radjabov | raak21zu@student.ju.se or akbarradjabov1@gmail.com |
 | Mohammad Abbas | abmo22ue@student.ju.se |
 
