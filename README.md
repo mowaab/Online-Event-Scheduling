@@ -24,21 +24,25 @@ Evently is a crossplatform online event planner, that is designed to help users 
 
 ## Tech stack
 
-Frontend: JavaScript, HTML, CSS, ReactJS, Material-UI
-
-Backend:
-
-Database: MongoDB
+We are using the MERN stack along with Material-UI for UI components.
 
 ## Compilation and running instructions
 
 1- Install NodeJS v20.17.0
 
-2- Open the terminal and run npm install
+2- Open the terminal and navigate to the backend directory
 
-3- run npm run dev and visit the URL printed in the terminal
+3- Install required dependencies: By first running npm install --save-dev nodemon and then npm install -g nodemon
 
-4- Login with username: "admin" and Password: "123"
+4- run npm run dev to start the backend
+
+5- Open a second terminal and navigate to EventlyApp
+
+6- run npm install
+
+7- run npm run dev and visit the URL printed in the terminal
+
+8- Login with username: "Admin" and Password: "123"
 
 ## License
 
