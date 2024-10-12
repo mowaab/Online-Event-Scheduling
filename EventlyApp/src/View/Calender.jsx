@@ -11,6 +11,7 @@ const Navbar = ({ handleLogout }) => (
     <div className="logo">Evently</div>
     <ul className="nav-links">
       <li><Link to="/calender">Calendar</Link></li>
+      <li><Link to="/dashboard">Dashboard</Link></li>
       <li><button onClick={handleLogout} className="btnLogOut">Logout</button></li>
     </ul>
   </nav>
@@ -87,13 +88,7 @@ const Features = () => {
     }
   };
 
-  const handleLogout = () => {
-    localStorage.removeItem('userId');
-    localStorage.removeItem('token');
-    Cookies.remove('userId');
-    navigate('/');
-  };
-
+  
   return (
     <section className="features">
       <h1>Welcome to <strong>Evently</strong></h1>
@@ -130,23 +125,7 @@ const Features = () => {
         </LocalizationProvider>
 
 
-        <div className="events-list">
-          <h3>Scheduled Events:</h3>
-          {events.length > 0 ? (
-            <ul>
-              {events.map((event, index) => (
-          <li key={index}>
-            <strong>Date:</strong> {event.date.split('T')[0]} <br />
-            <strong>Title:</strong> {event.title} <br />
-            <strong>Description:</strong> {event.description || 'No description'} <br />
-            <strong>Time:</strong> {event.time} <br /> <br />
-          </li>
-        ))}
-            </ul>
-          ) : (
-            <p>No events scheduled yet.</p>
-          )}
-        </div>
+        
       </div>
     </section>
   );
