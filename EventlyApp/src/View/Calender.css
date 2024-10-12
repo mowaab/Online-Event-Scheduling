@@ -130,3 +130,26 @@ body {
 .events-list strong {
   color: #000; /* Make labels bold and black for visibility */
 }
+
+.event-form input {
+  width: 50%;
+  padding: 10px 20px;
+  margin: 10px 0;
+  border: 2px solid #ddd;
+  border-radius: 25px;
+  font-size: 12px;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  outline: none;
+}
+
+.event-form input:focus {
+  border-color: #4a90e2;
+  box-shadow: 0 4px 8px rgba(74, 144, 226, 0.2);
+  width: 60%;
+}
+
+.event-form input::placeholder {
+  color: #999;
+  opacity: 0.7;
+}

@@ -32,6 +32,11 @@ function App() {
                 <Dashboard />
               </ProtectedRoute>} />
 
+          {/* <Route path="/profile" element=
+            {<ProtectedRoute>
+                <Profile />
+            </ProtectedRoute>} /> */}
+
           <Route path="/playground" element={<Playground />} />
 
         </Routes>

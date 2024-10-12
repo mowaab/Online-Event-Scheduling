@@ -1,7 +1,7 @@
 // src/Components/Dashboard.jsx
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import './Calender.css';
+import './Dashboard.css'; 
 import Cookies from 'js-cookie';
 
 const Navbar = ({ handleLogout }) => (
@@ -52,9 +52,12 @@ const Testimonials = () => (
       </div>
     </footer>
   );
-  
 const Dashboard = () => {
   const [events, setEvents] = useState([]);
+  const [filteredEvents, setFilteredEvents] = useState([]); // For search functionality
+  const [editEventId, setEditEventId] = useState(null); // Track event being edited
+  const [editEventDetails, setEditEventDetails] = useState({ title: '', description: '', time: '' });
+  const [searchQuery, setSearchQuery] = useState('');
   const navigate = useNavigate();
   const userId = localStorage.getItem('userId'); // Get userId
 
@@ -65,6 +68,7 @@ const Dashboard = () => {
         if (response.ok) {
           const appointments = await response.json();
           setEvents(appointments); 
+          setFilteredEvents(appointments); // Set for filtered events
         } else {
           const errorData = await response.json();
           console.error('Error fetching appointments:', errorData.message);
@@ -79,6 +83,77 @@ const Dashboard = () => {
     }
   }, [userId]);
 
+  // Handle Delete Event
+  const handleDeleteEvent = async (eventId) => {
+    try {
+      const response = await fetch(`http://localhost:5001/api/appointments/${eventId}`, {
+        method: 'DELETE',
+      });
+
+      if (response.ok) {
+        // Remove event from the state
+        setEvents(events.filter(event => event._id !== eventId));
+        setFilteredEvents(filteredEvents.filter(event => event._id !== eventId));
+        alert('Event deleted successfully');
+      } else {
+        const errorData = await response.json();
+        alert(errorData.message || 'Failed to delete event');
+      }
+    } catch (error) {
+      console.error('Error deleting event:', error);
+      alert('Error deleting event');
+    }
+  };
+
+  // Handle Update Event
+  const handleUpdateEvent = async () => {
+    if (!editEventDetails.title || !editEventDetails.time) {
+      alert('Please provide both title and time for the event');
+      return;
+    }
+
+    try {
+      const response = await fetch(`http://localhost:5001/api/appointments/${editEventId}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(editEventDetails),
+      });
+
+      if (response.ok) {
+        const updatedEvent = await response.json();
+        // Update the event in the events list
+        setEvents(events.map(event => (event._id === updatedEvent._id ? updatedEvent : event)));
+        setFilteredEvents(filteredEvents.map(event => (event._id === updatedEvent._id ? updatedEvent : event)));
+        
+        setEditEventId(null); // Reset edit mode
+        setEditEventDetails({ title: '', description: '', time: '' });
+        alert('Event updated successfully');
+      } else {
+        const errorData = await response.json();
+        alert(errorData.message || 'Failed to update event');
+      }
+    } catch (error) {
+      console.error('Error updating event:', error);
+      alert('Error updating event');
+    }
+  };
+
+  // Search and filter events
+  const handleSearch = (query) => {
+    setSearchQuery(query);
+    if (query) {
+      const filtered = events.filter(event => 
+        event.title.toLowerCase().includes(query.toLowerCase()) ||
+        event.date.includes(query)
+      );
+      setFilteredEvents(filtered);
+    } else {
+      setFilteredEvents(events); // Reset to original events if no query
+    }
+  };
+
   const handleLogout = () => {
     localStorage.removeItem('userId');
     localStorage.removeItem('token');
@@ -89,28 +164,65 @@ const Dashboard = () => {
   return (
     <div className="dashboard-container">
       <Navbar handleLogout={handleLogout} />
-      
       <section className="features">
         <h1>Your Scheduled <strong>Events</strong></h1>
+        <input
+          type="text"
+          className="search-input"
+          placeholder="Search by title or date"
+          value={searchQuery}
+          onChange={(e) => handleSearch(e.target.value)}
+        />
+        <h2>Total Events: {filteredEvents.length}</h2>
+
         <div className="events-list">
-          {events.length > 0 ? (
+          {filteredEvents.length > 0 ? (
             <ul>
-              {events.map((event, index) => (
-                <li key={index}>
-                  <strong>Date:</strong> {event.date.split('T')[0]} <br />
-                  <strong>Title:</strong> {event.title} <br />
-                  <strong>Description:</strong> {event.description || 'No description'} <br />
-                  <strong>Time:</strong> {event.time} <br /> <br />
+              {filteredEvents.map((event) => (
+                <li key={event._id}>
+                  {editEventId === event._id ? (
+                    <div>
+                      <input
+                        type="text"
+                        value={editEventDetails.title}
+                        onChange={(e) => setEditEventDetails({ ...editEventDetails, title: e.target.value })}
+                        placeholder="Title"
+                      />
+                      <input
+                        type="text"
+                        value={editEventDetails.description}
+                        onChange={(e) => setEditEventDetails({ ...editEventDetails, description: e.target.value })}
+                        placeholder="Description"
+                      />
+                      <input
+                        type="time"
+                        value={editEventDetails.time}
+                        onChange={(e) => setEditEventDetails({ ...editEventDetails, time: e.target.value })}
+                      />
+                      <br />
+                      <button onClick={handleUpdateEvent}>Update</button>
+                      <button onClick={() => setEditEventId(null)}>Cancel</button>
+                    </div>
+                  ) : (
+                    <div>
+                      <strong>Title:</strong> <u> <strong>{event.title}</strong> </u> <br />
+                      <strong>Description:</strong> {event.description || 'No description'} <br />
+                      <strong>Date:</strong> {event.date.split('T')[0]} <br />
+                      <strong>Time:</strong> {event.time} <br />
+                      <button onClick={() => setEditEventId(event._id) || setEditEventDetails(event)}>Edit</button>
+                      <button onClick={() => handleDeleteEvent(event._id)}>Delete</button>
+                    </div>
+                  )}
                 </li>
               ))}
             </ul>
           ) : (
-            <p>No events scheduled yet.</p>
+            <p>No events found.</p>
           )}
         </div>
+        <Testimonials />
+        <Footer />
       </section>
-      <Testimonials />
-      <Footer />
     </div>
   );
 };
