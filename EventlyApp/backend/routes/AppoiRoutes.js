@@ -13,6 +13,6 @@ router.get('/:userId', getUserAppointments); // Add this line
 
 router.delete('/:id', deleteAppointment)
 
-router.patch('/:id', updateAppointment)
+//router.put('/:id', updateAppointment)
 
 export default router;

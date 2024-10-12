@@ -55,7 +55,7 @@ export const updateAppointment = async (req, res) => {
         return res.status(400).json({error:"Appointment does not exist!"})
     }
 
-    const appointment = await Appointment.findByIdAndUpdate({_id: id})
+    const appointment = await Appointment.findByIdAndUpdate(id, req.body, { new: true });
 
     if(!appointment)
     {

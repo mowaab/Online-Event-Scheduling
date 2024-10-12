@@ -105,13 +105,13 @@ const Dashboard = () => {
     }
   };
 
-  // Handle Update Event
+  /*// Handle Update Event
   const handleUpdateEvent = async () => {
     if (!editEventDetails.title || !editEventDetails.time) {
       alert('Please provide both title and time for the event');
       return;
     }
-
+  
     try {
       const response = await fetch(`http://localhost:5001/api/appointments/${editEventId}`, {
         method: 'PUT',
@@ -120,7 +120,8 @@ const Dashboard = () => {
         },
         body: JSON.stringify(editEventDetails),
       });
-
+  
+      // Check if the response is OK (2xx status code)
       if (response.ok) {
         const updatedEvent = await response.json();
         // Update the event in the events list
@@ -131,14 +132,17 @@ const Dashboard = () => {
         setEditEventDetails({ title: '', description: '', time: '' });
         alert('Event updated successfully');
       } else {
+        // Handle the case when response is not OK (e.g., 404 or 500)
         const errorData = await response.json();
         alert(errorData.message || 'Failed to update event');
       }
     } catch (error) {
+      // Catch any network or unexpected errors
       console.error('Error updating event:', error);
       alert('Error updating event');
     }
-  };
+  };*/
+  
 
   // Search and filter events
   const handleSearch = (query) => {
@@ -209,8 +213,8 @@ const Dashboard = () => {
                       <strong>Description:</strong> {event.description || 'No description'} <br />
                       <strong>Date:</strong> {event.date.split('T')[0]} <br />
                       <strong>Time:</strong> {event.time} <br />
-                      <button onClick={() => setEditEventId(event._id) || setEditEventDetails(event)}>Edit</button>
-                      <button onClick={() => handleDeleteEvent(event._id)}>Delete</button>
+                    {/*<button onClick={() => setEditEventId(event._id) || setEditEventDetails(event)}>Edit</button>*/}                     
+                     <button onClick={() => handleDeleteEvent(event._id)}>Delete</button>
                     </div>
                   )}
                 </li>
